@@ -1,0 +1,35 @@
+﻿@*@model List<ASP_Core_Empty.Models.Employee>*@
+@*@model ASP_Core_Empty.Models.Employee*@
+
+@{
+    ViewData["Title"] = "About";
+}
+
+<h1>this is About page...</h1> 
+
+@*@{
+    foreach (var item in Model)
+    {
+        <h2>@item.ID</h2>
+        <h2>@item.Name</h2>
+        <h2>@item.Gender</h2>
+    }
+}*@
+
+
+@*anchor tag implementation*@
+<a href="/Home/Index">Index page...1</a>
+<br />
+
+@*Html Helper Tag*@
+@*It will Generate the whole Anchor*@
+@Html.ActionLink("Index page...2","Index","Home")
+<br />
+
+@*Url Helper used in href*@
+@*It will generate only Href*@
+<a href="@Url.Action("Index","Home")">Index page...3</a>
+<br />
+
+@*example of TagHelper*@
+<a asp-controller="Home" asp-action="Index">Index page...4</a>
