@@ -1,0 +1,57 @@
+﻿Explaination of Entity Framework concepts :
+
+To address the data access requirements of ASP.NET Core MVC application, you can use ORM(Object/Relational mapping) Framework.
+here data access requirements refers to the database operations like CRUD.
+ORM framework : simplifiesthe process of accessing data from applications.
+it is a tool for storing data from domain object to relational databases. here domain objcts refers to the Model classes and relational databases refers to the servers like SQL, MySQL, etc.
+
+Application (object, oject,....) <----> Framework (ORM) <----> DataBase
+here Framework can be Entity Framework Core(Latest). the framework used earlier was ADO.NET in ASP.NET.
+EF Core came after EF 6 version and it the advancement of ADO.NET and EF 6.
+
+example : Application (Model Classes like Student or Employee) <----> EF Core <----> DataBase(Tables for ModelClasses like Student and Employee tables).
+so here EF Core is used to convert model classes to database tables and can be used to exract data from tables and convert it into Model Classes.
+It is open-source, lightwieght, extensible and cross-plateform version.
+It is used as a advance version of ADO.NET bcz it gives developers an automated mechanism for accessing and storing the data in the database.
+
+So, there are 2 approches to implement the functionality of this framenwork :
+1. Code-first appproch and 
+2. Database-first approch.
+
+to start using EF Core we must install these below packages : -------------------------------------------------------------> STEP - 1
+
+Microsoft.entityFrameworkCore.Tools : they are primarily used to manage migration and to scaffold a DBContext.
+
+Microsoft.entityFrameworkCore.Design : it contains all the design time logic for EF Core framework.
+
+Microsoft.entityFrameworkCore.sqlserver :
+
+-------------------------------------------------------------> STEP - 2
+Create a Model Class named Student.cs then,
+Create a StudentDBContext.cs Model Class
+Explaination of both the classes are written below :	
+
+In Student Model class create some properties like Id, Name, Age, Gender and make Id the Primary Key by Writing [Key] above the property.
+DbContext is the integral part of EF Core, since it is the class that is used to intreract with the underlying databse. it is used to manage the database connection 
+and used to retrieve and save data in database.
+An object of DbContext represent the session with the database to perform operations.
+it is the combination of unit of work and repository patterns.
+DbSet<T> type defines one or more properties where, T is the type of Model whose data is to be stored in the table named Students written after DbSet<Student> Students;
+So the actual data stored in the form of tables is held using DbSet<> functionality.
+
+DbContextOptions : since for the DbContext class able to do any sort of work it needs DbContextOption class intance(object).
+DbContextOptions class intance carries configuration information such as the connection string, database provider to use.
+
+-------------------------------------------------------------> STEP - 3
+Create a connection String in appsettings.json.
+
+-------------------------------------------------------------> STEP - 4
+Registering Connection String in Program.cs file.	 
+
+-------------------------------------------------------------> STEP - 5
+Add a Migration file and run the Migration :
+to Add Migration first Open Tools menu --> NuGet package manager --> package manager console.
+inside package manager console write --> add-migration CodeFirstCreateDB.
+CodeFirstCreateDB is the migration name.
+Since Migration contains the structure by which contains the datatypes of elements or data stored in tables.
+After adding Migration, CodeFirstCreateDB class is created inside Migrations folder.

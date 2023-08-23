@@ -1,5 +1,14 @@
+using ASP_Core_Empty.Models;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
+
+//These below lines of code represents the Connection building for EF Core to SSMS
+var provider = builder.Services.BuildServiceProvider();
+var config = provider.GetRequiredService<IConfiguration>(); // IConfiguration is the generic method
+builder.Services.AddDbContext<StudentDBContext>(item => item.UseSqlServer(config.GetConnectionString("dbcs"))); 
+
 var app = builder.Build();
 
 app.MapDefaultControllerRoute();

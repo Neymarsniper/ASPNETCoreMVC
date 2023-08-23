@@ -1,0 +1,223 @@
+﻿@*@model List<ASP_Core_Empty.Models.Employee>*@
+@*List<ASP_Core_Empty.Models.Employee> is not included because dont know how to use list with asp-for TagHelper*@
+
+@model ASP_Core_Empty.Models.Student  
+@*this model is the part of first form associated with Student.cs Model file*@
+
+@*@model ASP_Core_Empty.Models.Employee *@
+@*this model is the part of second form associated with Employee.cs Model file*@
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/_Layout.cshtml";
+}
+
+<h1>this is the Index page...</h1> 
+
+@*this form is related to Student.cs file and ModelValidaitons concepts...*@
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-4">
+            <form class="d-grid" asp-action="Index" asp-controller="Home" method="post">
+
+                @*<div asp-validation-summary="All"></div>*@ 
+
+                <input asp-for="Name" placeholder="Enter Name" class="form-control" />
+                <span asp-validation-for="Name" style="color:red"></span>    @*asp-validation-for TagHelper indicates or display the Validation Message below the input field...*@
+                <br />
+
+                <input asp-for="Age" placeholder="Enter Age" class="form-control" />
+                <span asp-validation-for="Age" style="color:red"></span>
+                <br />
+
+                <input asp-for="Gender" placeholder="Enter Gender" class="form-control" />
+                <span asp-validation-for="Gender" style="color:red"></span>
+                <br />
+
+                @*<label asp-for="Email">Enter Email :</label>
+                <input asp-for="Email" placeholder="Enter email" class="form-control" />
+                <span asp-validation-for="Email" style="color:red"></span>
+                <br />
+
+                <label asp-for="Age">Enter Age :</label>
+                <input asp-for="Age" placeholder="Enter Age" class="form-control" />
+                <span asp-validation-for="Age" style="color:red"></span>
+                <br />
+
+                <label asp-for="Password">Enter Passsword :</label>
+                <input asp-for="Password" placeholder="Enter Password" class="form-control" />
+                <span asp-validation-for="Password" style="color:red"></span>
+                <br />
+
+                <label asp-for="ConfirmPass">Confirm Passsword :</label>
+                <input asp-for="ConfirmPass" class="form-control" />
+                <span asp-validation-for="ConfirmPass" style="color:red"></span>
+                <br />
+
+                <label asp-for="WebURL">Enter Website URL :</label>
+                <input asp-for= "WebURL" class="form-control" />
+                <span asp-validation-for="WebURL" style="color:red"></span>
+                <br />
+
+                <label asp-for="ProfileSum">Describe yourself:</label>
+                <input asp-for="ProfileSum" class="form-control" />
+                <span asp-validation-for="ProfileSum" style="color:red"></span>
+                <br />*@
+
+                <input type="submit" value="Submit" class="btn btn-outline-primary btn-block" />
+            </form>
+        </div>  
+    </div>
+</div>
+
+
+
+@*this form is related to Employee.cs file and ModelBinding concepts...*@
+
+@*<div class = "container">
+    <div class="row">
+        <div class="col-sm-4">
+            <form class = "d-grid" asp-action="Index" asp-controller="Home" method="post">
+                <label asp-for="ID">Enter ID :</label>
+                <input asp-for="ID" placeholder="Enter ID" class="form-control"/>
+                <br/>
+                <label asp-for="Name">Enter Name :</label>
+                <input asp-for="Name" placeholder="Enter Name" class="form-control"/> 
+                <br/>
+                <select asp-for="Gender" class="form-control" asp-items="Html.GetEnumSelectList<MyEnum>()">
+                    <option value="">Select Gender :</option>
+                </select>
+                <br/>
+                <label asp-for="Age">Enter Age :</label>
+                <input asp-for="Age" placeholder="Enter Age" class="form-control" />
+                <br />
+                <textarea asp-for="Description" class="form-control" placeholder="Enter description...." rows="5" cols="5"></textarea>
+                <br/>
+                <label>
+                    Married :
+                </label>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" asp-for="Married" value="Yes">
+                    <label class="form-check-label" for="flexCheckDefault">
+                        Yes
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" asp-for="Married" value="No">
+                    <label class="form-check-label" for="flexCheckChecked">
+                        No
+                    </label>
+                </div>
+                <input type = "submit" value="Submit" class="btn btn-outline-primary btn-block"/>
+                <br/>
+            </form>
+        </div>
+    </div>
+</div>*@
+
+
+
+
+@*<h1>Index view from home controller</h1>
+@ViewData["Data1"]
+<br/>
+@ViewData["Data2"]
+<br/>
+@ViewData["Data3"]
+<br/>
+@{
+    foreach(var item in (String[])ViewData["data4"])
+    {
+        <h2>@item</h2>
+    }
+}
+<br/>*@
+    
+@*@ViewBag.Name
+<br/>
+@ViewData["Data5"]
+<br/>*@
+ 
+
+
+
+@*<h1 class="bg-primary">Index2</h1>
+<h1 class="bg-danger">Index3</h1>
+<h1 class="bg-success">Index4</h1>*@
+
+
+
+
+@*@{
+    foreach (var item in Model)
+    {
+        <h2>@item.ID</h2>
+        <h2>@item.Name</h2>
+        <h2>@item.Gender</h2>
+    }
+   }*@
+
+
+
+
+
+   @model IEnumerable<ASP_Core_Empty.Models.Student>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Age)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Gender)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Standard)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Age)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Gender)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Standard)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
